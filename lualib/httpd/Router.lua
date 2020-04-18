@@ -154,4 +154,14 @@ function Router.registery(route, class, route_type)
 	return registery_router(route, class, route_type)
 end
 
+-- 注销路由
+function Router.unregistery(route)
+  routes[to_route(route)]=nil
+  if routes[to_route(route)] then
+    return false
+  end
+  Log:INFO("路由 ["..route.."] 注册取消..")
+	return true
+end
+
 return Router

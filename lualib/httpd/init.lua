@@ -22,6 +22,7 @@ local EVENT_DISPATCH = HTTP.EVENT_DISPATCH
 -- 注册HTTP路由与静态文件
 local HTTP_STATIC_REGISTERY = HTTPD.static
 local HTTP_ROUTE_REGISTERY = HTTPD.registery
+local HTTP_ROUTE_UNREGISTERY = HTTPD.unregistery
 
 
 local httpd = class("httpd")
@@ -64,6 +65,15 @@ function httpd:group(target, prefix, array)
             self:api(prefix..r, c)
         end
     end
+end
+
+-- 取消路由注册
+function httpd:unregistery(route)
+  if HTTP_ROUTE_UNREGISTERY(route) then
+    return true
+  else
+    return false
+  end
 end
 
 -- 最大URI长度
